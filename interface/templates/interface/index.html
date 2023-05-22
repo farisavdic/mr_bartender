@@ -1,0 +1,9 @@
+{% if available_drinks %}
+    <ul>
+        {% for drink in available_drinks %}
+            <li><a href="/interface/order/?drink={{ drink }}&cup_id={{ cup_id }}&api_key={{ api_key }}">{{ drink }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No drinks are available</p>
+{% endif %}

@@ -1,0 +1,12 @@
+{% if drink_name %}
+    <h1>{{ drink_name }}</h1>
+    <ul>
+        {% for ing in ingredients %}
+            <p>{{ ing }}</p>
+        {% endfor %}
+    </ul>
+    <a href="/api/?key={{ api_key }}&order={{ drink_name }}&cup_id={{ cup_id }}&action=3">Verbindlich bestellen</a>
+{% else %}
+    <p>This drink is not available</p>
+    <a href="/interface/">Back to Homepage</a>
+{% endif %}

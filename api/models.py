@@ -1,4 +1,5 @@
 from django.db import models
+from cocktails.models import Ingredient
 
 
 # Create your models here.
@@ -16,3 +17,15 @@ class ApiKey(models.Model):
 
     def __str__(self):
         return self.key
+
+
+class Dispenser(models.Model):
+    dispenser_id = models.IntegerField(default=-1)
+    ingredient = models.OneToOneField(Ingredient, on_delete=models.SET_NULL, null=True, unique=False)
+
+    def __str__(self):
+        if self.ingredient.available:
+            availability = "available"
+        else:
+            availability = "unavailable"
+        return "Dispenser" + str(self.dispenser_id) + ": " + self.ingredient.name + " (" + availability + ")"

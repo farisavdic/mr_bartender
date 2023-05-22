@@ -66,6 +66,9 @@ def index(request):
             key = gen_api_key()
             return HttpResponse("API key is " + key)
         return HttpResponse("You are not authorized to generate API keys")
-
+    # get available drinks
+    elif action == '6':
+        drinks = get_available_drinks()
+        return HttpResponse(str(drinks))
     else:
         return HttpResponse("invalid action code")

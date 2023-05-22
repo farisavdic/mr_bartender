@@ -1,4 +1,5 @@
 from .models import Cup, ApiKey
+from cocktails.models import Drink, Ingredient
 import secrets
 
 # utility functions to be imported into other files
@@ -21,6 +22,7 @@ def is_master_key(key):
 
 # returns True if <key> is a valid API-key
 def check_api_key(key):
+    print("key: " + key)
     if ApiKey.objects.filter(key=key).exists():
         return True
     return False
@@ -67,3 +69,20 @@ def get_order(cup_id):
     c.order = ""
     c.save()
     return order
+
+
+def get_available_drinks():
+    av_drinks = list()
+    drinks = Drink.objects.all()
+    for d in drinks:
+        available = True
+        ingredients = d.ingredients.all()
+        for i in ingredients:
+            if not i.available:
+                available = False
+                break
+            else:
+                continue
+        if available:
+            av_drinks.append(d.name)
+    return av_drinks

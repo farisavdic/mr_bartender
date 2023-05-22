@@ -1,0 +1,5 @@
+Example for encoded order string received by Arduino:
+
+1:240::600::::::1::1:0000
+
+rühren(ja=1/nein=0):Pumpe1 in ml:Pumpe2 in ml:Pumpe3 in ml:Pumpe4 in ml:...:...:...:Pumpe8 in ml:Deko1(ja/nein):Deko2(ja/nein):Eis(ja/nein):0000(markiert Ende)
