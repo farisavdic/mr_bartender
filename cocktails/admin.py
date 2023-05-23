@@ -3,5 +3,6 @@ from .models import *
 
 
 # Register your models here.
-admin.site.register(Ingredient)
+admin.site.register(IngredientForDrink)
 admin.site.register(Drink)
+admin.site.register(Ingredient)

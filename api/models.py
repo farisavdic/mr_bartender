@@ -21,8 +21,8 @@ class ApiKey(models.Model):
 
 class Dispenser(models.Model):
     dispenser_id = models.IntegerField(default=-1)
-    ingredient = models.OneToOneField(Ingredient, on_delete=models.SET_NULL, null=True, unique=False)
-
+    ingredient = models.OneToOneField(Ingredient, on_delete=models.SET_NULL, null=True)
+    amount_left = models.DecimalField(max_digits=4, decimal_places=1)
     def __str__(self):
         if self.ingredient.available:
             availability = "available"

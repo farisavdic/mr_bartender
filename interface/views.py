@@ -34,3 +34,17 @@ def order(request):
             "drink_name": None,
         }
     return HttpResponse(template.render(context, request))
+
+
+def message(request):
+    messages = request.GET.getlist("message[]", "")
+    template = loader.get_template("interface/message.html")
+    if messages:
+        context = {
+            "messages": messages,
+        }
+    else:
+        context = {
+            "messages": None,
+        }
+    return HttpResponse(template.render(context, request))

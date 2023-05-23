@@ -6,7 +6,7 @@ with open("cocktails2.csv") as csv_file:
     #tmp = next(csv_reader)
     tmp = next(csv_reader)
     for t in tmp:
-        ing = Ingredient(name=t)
+        ing = IngredientForDrink(name=t)
         ing.save()
         #print(t)
 

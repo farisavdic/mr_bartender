@@ -1,11 +1,18 @@
 {% if drink_name %}
     <h1>{{ drink_name }}</h1>
-    <ul>
-        {% for ing in ingredients %}
-            <p>{{ ing }}</p>
-        {% endfor %}
-    </ul>
-    <a href="/api/?key={{ api_key }}&order={{ drink_name }}&cup_id={{ cup_id }}&action=3">Verbindlich bestellen</a>
+    <form method="get" action="/api/">
+        {% csrf_token %}
+        <ul>
+            {% for ing in ingredients %}
+                {{ ing.name }}<input name="order[]" type="hidden" value="{{ ing.name }}"><input value="{{ ing.amount }}" name="order[]" type="number"> {{ ing.mother_instance.unit }}
+                <br>
+            {% endfor %}
+            <input type="hidden" value="{{ api_key }}" name="key">
+            <input type="hidden" value="{{ cup_id }}" name="cup_id">
+            <input type="hidden" value="3" name="action">
+        </ul>
+        <input type="submit" value="Verbindlich bestellen">
+    </form>
 {% else %}
     <p>This drink is not available</p>
     <a href="/interface/">Back to Homepage</a>

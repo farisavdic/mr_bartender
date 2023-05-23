@@ -1,5 +1,6 @@
-from .models import Cup, ApiKey
-from cocktails.models import Drink, Ingredient
+from .models import ApiKey, Cup, Dispenser
+from cocktails.models import Ingredient, Drink
+from decimal import Decimal
 import secrets
 
 # utility functions to be imported into other files
@@ -22,7 +23,6 @@ def is_master_key(key):
 
 # returns True if <key> is a valid API-key
 def check_api_key(key):
-    print("key: " + key)
     if ApiKey.objects.filter(key=key).exists():
         return True
     return False
@@ -63,26 +63,55 @@ def place_order(cup_id, order):
 
 
 # returns order-String associated with <cup_id>
-def get_order(cup_id):
+def get_order(cup_id, encoded=False):
     c = Cup.objects.get(cup_id=cup_id)
     order = c.order
     c.order = ""
     c.save()
+    if encoded:
+        return arduino_encode(order)
     return order
+
+# Gin:4.0;Tonic Water:12.0;Limette:1.0;0000
+def arduino_encode(order):
+    str_list = [None] * 12
+    comp_list = order.split(";")
+
+    str_list[0] = '0' # do not mix
+    disps = Dispenser.objects.all()
+    for e in comp_list:
+        pair = e.split(":")
+        #print(pair[0] + " " + pair[1])
+        for d in disps:
+            #print(d.dispenser_id)
+            #print(d.ingredient)
+            if d.ingredient.name == pair[0]:
+                str_list[int(d.dispenser_id)+1] = str((Decimal(pair[1]) * 10))
+    for i in range(12):
+        if not str_list[i]:
+            str_list[i] = ""
+    return ":".join(str_list)
+
+
 
 
 def get_available_drinks():
     av_drinks = list()
+    av_ingredients = list()
+    dispensers = Dispenser.objects.all()
+    for d in dispensers:
+        if d.ingredient.available:
+            av_ingredients.append(d.ingredient.name)
+        continue
     drinks = Drink.objects.all()
-    for d in drinks:
+    for dr in drinks:
         available = True
-        ingredients = d.ingredients.all()
+        ingredients = dr.ingredients.all()
         for i in ingredients:
-            if not i.available:
+            if not i.name in av_ingredients:
                 available = False
                 break
-            else:
-                continue
+            continue
         if available:
-            av_drinks.append(d.name)
+            av_drinks.append(dr.name)
     return av_drinks
