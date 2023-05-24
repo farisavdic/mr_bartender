@@ -64,9 +64,11 @@ def index(request):
         cup_id = request.GET.get("cup_id", "")
         if check_cup_id(cup_id):
             enc = False
+            prep = False
             if is_master_key(api_key):
                 enc = True
-            order = get_order(cup_id, encoded=enc)
+                prep = True
+            order = get_order(cup_id, encoded=enc, prepare_drink=prep)
             if order:
                 return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=" + order + "%20was%20successfully%20prepared")
             return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=There%20is%20no%20order%20for%20cup%20" + str(cup_id))

@@ -2,7 +2,8 @@ from .models import ApiKey, Cup, Dispenser
 from cocktails.models import Ingredient, Drink
 from decimal import Decimal
 import secrets
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # utility functions to be imported into other files
 
 
@@ -63,16 +64,34 @@ def place_order(cup_id, order):
 
 
 # returns order-String associated with <cup_id>
-def get_order(cup_id, encoded=False):
+def get_order(cup_id, encoded=False, prepare_drink=False):
     c = Cup.objects.get(cup_id=cup_id)
     order = c.order
     c.order = ""
     c.save()
+    if prepare_drink:
+        pass
+        edit_amounts(order)
     if encoded:
         return arduino_encode(order)
     return order
 
-# Gin:4.0;Tonic Water:12.0;Limette:1.0;0000
+
+def edit_amounts(order):
+    print("order: "+ order)
+    comp_list = order.split(";")
+    dict = {}
+    for c in comp_list:
+        if c:
+            pair = c.split(":")
+            print(pair)
+            dict[pair[0]] = pair[1]
+    for ing in dict:
+        d = Dispenser.objects.get(ingredient=Ingredient.objects.get(name=ing))
+        d.amount_left = d.amount_left - Decimal(dict[ing])
+        d.save()
+
+
 def arduino_encode(order):
     str_list = [None] * 12
     comp_list = order.split(";")
@@ -86,13 +105,27 @@ def arduino_encode(order):
             #print(d.dispenser_id)
             #print(d.ingredient)
             if d.ingredient.name == pair[0]:
-                str_list[int(d.dispenser_id)+1] = str((Decimal(pair[1]) * 10))
+                str_list[int(d.dispenser_id)+1] = str(int(Decimal(pair[1]) * 10))
     for i in range(12):
         if not str_list[i]:
             str_list[i] = ""
+    str_list[11] = "0000"
     return ":".join(str_list)
 
 
+def raise_warning(warning):
+    pass
+
+
+@receiver(post_save, sender=Dispenser)
+def update(sender, instance, **kwargs):
+    if instance.get_amount_left() > 10.0:
+        instance.ingredient.available = True
+        instance.ingredient.save()
+    else:
+        instance.ingredient.available = False
+        instance.ingredient.save()
+        raise_warning(str(instance.dispenser_id) + " is running low")
 
 
 def get_available_drinks():

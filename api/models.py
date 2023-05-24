@@ -29,3 +29,6 @@ class Dispenser(models.Model):
         else:
             availability = "unavailable"
         return "Dispenser" + str(self.dispenser_id) + ": " + self.ingredient.name + " (" + availability + ")"
+
+    def get_amount_left(self):
+        return self.amount_left

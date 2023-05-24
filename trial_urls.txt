@@ -1,0 +1,1 @@
+localhost:8000/api/?key=2wY3Oc37F3MGLxqPnEGdwA&cup_id=1234&action=4
