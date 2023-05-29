@@ -1,0 +1,82 @@
+.kachel
+{
+    height: 100px; 
+    width: 100px;
+    display: inline-block;
+    background:  orange;
+    background-position: center; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    font-size: 50px;
+    text-align: center;
+    border: 2px dashed;
+    margin: 5px;
+  	margin-left: 0px;
+    border-radius: 5px 20px;
+    padding: 0px;
+}
+.sidebar{
+	display:true; 
+  	position:fixed; 
+    margin-left:15px; 
+}
+.s_element {
+  	height: 100px; 
+    width: 300px;
+    display: block;
+    border: 2px solid black;
+    text-align: center;
+    margin-top: 5px;
+    background-color: yellow;
+    color:black;
+    font-size: 50px;
+    border-radius: 10px;
+}
+.s_button{
+	height:50px;
+    width:50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+h1{
+    font-size: 80px;
+    -webkit-text-stroke: 2px black;
+    color: orange;
+ }
+h2{
+    font-size: 40px;
+}
+.background{
+    background-color: darkgray; 
+    background-image: url(Bild1.png); 
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    zoom: 200%;
+}
+.beschreibung{
+    padding: 20px;
+    border: 5px solid black;
+    border-radius:20px;
+    
+}
+h4{
+    color: black;
+    font-size: 50px;
+}
+h3{
+    font-size: 30px;
+}
+.b_button{
+    display:block;
+    margin: auto;
+    text-align: center;
+    border: 2px solid black;
+    background-color: orange;
+    font-size: 60px;
+    border-radius: 30px;
+    margin:20px;
+    
+}

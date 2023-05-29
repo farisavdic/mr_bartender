@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body class="background">
+
+<!--sidebar-->
+<div class="sidebar" style="display:none" id="mySidebar">
+  <button class="s_button" onclick="s_close()">☰</button>
+  <a class="s_element" href="######" >Einstellungen</a>
+  <a class="s_element" href="######" >Profil</a>
+  <a class="s_element" href="######" >Anleitung</a>
+  <a class="s_element" href="######" >Datenbank</a>
+</div>
+<div class="sidebar" id="b">
+  	<button class="s_button" onclick="s_open()">☰</button>
+</div>
+
+<!-- Page Content -->
+<div style="background-color: darkgray; position: fixed;">
+</div>
+<div style="margin-left:20px; ">
+<br>
+  <h1> Mr. Bartender </h1>
+  <h2> Vorschläge </h2>
+    <div >
+	  <a class="kachel" style="background-image: url('Pina_Colada.jpeg'); background-color: white;" href="c1.html">c1</a>
+    <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
+	  <div class="kachel" style="background-image: url('#######');" href="######">c3</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c4</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c5</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c6</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c7</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
+    </div>
+   <h2> Verlauf </h2>
+	  <div class="kachel" style="background-image: url('#######');" href="######">c1</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
+  	<div class="kachel" style="background-image: url('#######');" href="######">c3</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c4</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c5</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c6</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c7</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
+   <h2> Heute beliebt </h2>
+  	<div class="kachel" style="background-image: url('#######');" href="######">c1</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
+	  <div class="kachel" style="background-image: url('#######');" href="######">c3</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c4</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c5</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c6</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c7</div>
+    <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
+   <h2> Selbstkonfiguration </h2>
+	<div class="kachel" style="background-image: url('#######');" href="######">c1</div>
+</div>
+
+
+<script>
+function s_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("b").style.display = "none";
+}
+
+function  s_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("b").style.display = "block";
+}
+</script>
+</body>
+</html>
