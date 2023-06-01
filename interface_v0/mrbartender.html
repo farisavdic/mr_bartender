@@ -22,11 +22,11 @@
 <!-- Page Content -->
 <div style="background-color: darkgray; position: fixed;">
 </div>
-<div style="margin-left:20px; ">
+<div style="margin-left:15px; ">
 <br>
   <h1> Mr. Bartender </h1>
   <h2> Vorschläge </h2>
-    <div >
+    <div class="vorschläge">
 	  <a class="kachel" style="background-image: url('Pina_Colada.jpeg'); background-color: white;" href="c1.html">c1</a>
     <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
 	  <div class="kachel" style="background-image: url('#######');" href="######">c3</div>
@@ -37,6 +37,7 @@
     <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
     </div>
    <h2> Verlauf </h2>
+   <div class="vorschläge">
 	  <div class="kachel" style="background-image: url('#######');" href="######">c1</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
   	<div class="kachel" style="background-image: url('#######');" href="######">c3</div>
@@ -45,7 +46,9 @@
     <div class="kachel" style="background-image: url('#######');" href="######">c6</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c7</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
+   </div>
    <h2> Heute beliebt </h2>
+   <div class="vorschläge">
   	<div class="kachel" style="background-image: url('#######');" href="######">c1</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c2</div>
 	  <div class="kachel" style="background-image: url('#######');" href="######">c3</div>
@@ -54,9 +57,14 @@
     <div class="kachel" style="background-image: url('#######');" href="######">c6</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c7</div>
     <div class="kachel" style="background-image: url('#######');" href="######">c8</div>
+   </div>
    <h2> Selbstkonfiguration </h2>
-	<div class="kachel" style="background-image: url('#######');" href="######">c1</div>
-</div>
+   <div class="vorschläge">
+	  <div class="kachel" style="background-image: url('#######');" href="######">c1</div>
+   </div>
+   <br>
+   <br>
+  </div>
 
 
 <script>
@@ -69,6 +77,7 @@ function  s_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("b").style.display = "block";
 }
+screen.orientation.lock();
 </script>
 </body>
 </html>
