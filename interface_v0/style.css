@@ -1,3 +1,10 @@
+.vorschläge{
+    height: 110px;   
+    overflow-y:hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
 .kachel
 {
     height: 100px; 
@@ -12,7 +19,7 @@
     border: 2px dashed;
     margin: 5px;
   	margin-left: 0px;
-    border-radius: 5px 20px;
+    border-radius: 10px 25px;
     padding: 0px;
 }
 .sidebar{
@@ -40,12 +47,12 @@
     border-radius: 5px;
 }
 h1{
-    font-size: 80px;
+    font-size: 60px;
     -webkit-text-stroke: 2px black;
     color: orange;
  }
 h2{
-    font-size: 40px;
+    font-size: 30px;
 }
 .background{
     background-color: darkgray; 
@@ -54,29 +61,111 @@ h2{
     background-position: center; 
     background-size: contain; 
     background-repeat: no-repeat;
-    zoom: 200%;
+    
+    zoom: 250%;
 }
+
 .beschreibung{
-    padding: 20px;
+    padding: 5%;
     border: 5px solid black;
     border-radius:20px;
-    
+    height: 90%;
+    z-index: 0;
+}
+#b_textfeld{
+    position: absolute;
+    vertical-align: middle;
+    top: 35%;
+    height: 45%;
+    padding-top: 0px;
 }
 h4{
     color: black;
-    font-size: 50px;
+    font-size: 60px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    
 }
 h3{
-    font-size: 30px;
+    font-size: 40px;
+    margin: 20px;
 }
 .b_button{
     display:block;
-    margin: auto;
     text-align: center;
     border: 2px solid black;
     background-color: orange;
     font-size: 60px;
     border-radius: 30px;
     margin:20px;
-    
+    width: 70%;
+    position:absolute;
+    top: 78%;
+    left: 50%;
+    margin-left: -35%;
+    color:black;
+}
+#lockscreen{
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 0px;
+    background-color: darkgrey;
+    z-index: 1;
+}
+#checkmark{
+    height: 30%;
+    width: 40%;
+    background-image: url(checkmark.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    animation-name: check;
+    animation-duration: 2s;
+}
+@keyframes check{
+    from{top: -40%;}
+    to{top: 20%;}
+}
+#l_text{
+    color:green; 
+    position: absolute; 
+    top: 45%; 
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    animation-name: text;
+    animation-duration: 2s;
+}
+@keyframes text{
+    from{top: 120%;}
+    to{top: 45%;}
+}
+.r_button{
+    display:table-cell;
+    position: absolute;
+    height: 10%;
+    width: 50%;
+    top: 80%;
+    left: 50%;
+    margin-left: -25%;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid black;
+    background-color: rgb(231, 13, 13);
+    font-size: 60px;
+    border-radius: 30px;
+    animation-name: r;
+    animation-duration: 8s;
+}
+@keyframes r{
+    0%,50%{opacity: 0;}
+    100%{opacity: 1;}
 }
