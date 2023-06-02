@@ -61,23 +61,39 @@ h2{
     background-position: center; 
     background-size: contain; 
     background-repeat: no-repeat;
-    
     zoom: 250%;
 }
 
 .beschreibung{
+    position: absolute;
     padding: 5%;
     border: 5px solid black;
     border-radius:20px;
-    height: 90%;
+    right: 10px;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
     z-index: 0;
+    animation-name:b_open;
+    animation-duration: 1s;
+    overflow: hidden;
+}
+@keyframes b_open{
+    0%{right: 100%;
+        left: 0%;
+        top: 0%;
+        bottom: 100%;
+        opacity: 0%;}
+    100%{}
 }
 #b_textfeld{
     position: absolute;
     vertical-align: middle;
     top: 35%;
     height: 45%;
+    width: 320px;
     padding-top: 0px;
+    overflow: hidden;
 }
 h4{
     color: black;
@@ -100,7 +116,7 @@ h3{
     margin:20px;
     width: 70%;
     position:absolute;
-    top: 78%;
+    top: 82%;
     left: 50%;
     margin-left: -35%;
     color:black;
@@ -135,9 +151,9 @@ h3{
     to{top: 20%;}
 }
 #l_text{
-    color:green; 
+    color:rgb(0, 177, 0); 
     position: absolute; 
-    top: 45%; 
+    top: 42%; 
     width: 100%;
     text-align: center;
     font-size: 60px;
@@ -146,23 +162,24 @@ h3{
 }
 @keyframes text{
     from{top: 120%;}
-    to{top: 45%;}
+    to{top: 42%;}
 }
-.r_button{
+.l_button{
     display:table-cell;
     position: absolute;
-    height: 10%;
-    width: 50%;
+    height: 50px;
+    width: 200px;
     top: 80%;
     left: 50%;
-    margin-left: -25%;
+    margin-left: -100px;
     text-align: center;
-    vertical-align: middle;
-    border: 2px solid black;
-    background-color: rgb(231, 13, 13);
-    font-size: 60px;
+    vertical-align: bottom;
+    border: 1.5px solid rgb(51, 49, 49);
+    background-color: rgb(255, 45, 45);
+    color:rgb(27, 26, 26);
+    font-size: 40px;
     border-radius: 30px;
-    animation-name: r;
+    animation-name: ;
     animation-duration: 8s;
 }
 @keyframes r{
