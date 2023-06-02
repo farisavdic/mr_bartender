@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="background" style="backdrop-filter: blur(5px);">
+    <div id="lockscreen">
+        <div id="checkmark">
+            
+        </div>
+        <div id="l_text">
+            bestellung aufgegeben
+        </div>
+        <a class="l_button" onclick="back()"> return </a>
+    </div>
+    <div class="beschreibung">
+        
+        <div class="kachel" style="height:200px; width:200px; background-image: url('#######');" href="######">Pina Colada</div>
+        <div id="b_textfeld">
+            <h4>Zutaten:</h4>
+            <h3>Rum:        4cl</h3>
+            <h3>Kokosmilch: 4cl</h3>
+            <h3>Ananassaft: 4cl </h3>
+        </div>
+        <a class="b_button" href="#######" onclick="lock()">Bestellen</a>
+    </div>
+    <script>
+        function lock() {
+            document.getElementById("lockscreen").style.display = "block";
+            check();
+            }
+        function back() {
+            document.getElementById("lockscreen").style.display = "none";
+            }
+    </script>
+</body>
+</html>

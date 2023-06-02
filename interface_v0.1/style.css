@@ -1,0 +1,233 @@
+a {
+    color: black;
+}
+.k_container{
+    height: 130px;   
+    overflow-y:hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+.kachel
+{
+    height: 120px; 
+    width: 120px;
+    display: inline-block;
+    background:  orange;
+    background-position: top; 
+    background-position-y: 8px;
+    background-size: 70%; 
+    background-repeat: no-repeat;
+    font-size: 50px;
+    text-align: center;
+    border: 2px solid;
+    margin: 5px;
+  	margin-left: 0px;
+    border-radius: 10px 25px;
+    padding: 0px;
+    font-display: 20px;
+    overflow: hidden;
+}
+.k_text{
+    height: 25px;
+    width:100%;
+    background-color: black;
+    margin-top: 100px;
+    padding-top: 2px;
+    font-size: 15px;
+    color:white;
+    text-decoration: none;
+}
+.sidebar{
+	display:true; 
+  	position: fixed; 
+    margin-left: 13px; 
+    height: 100%;
+}
+.s_button{
+	height:50px;
+    width:50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-image: url('interface/interface\ 3.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.s_element { 
+    height: fit-content;
+    width: 300px;
+    display: block;
+    border: 2px solid black;
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 10px;
+    background-color: rgb(109, 109, 109);
+    background-size: 20%;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-position-x: 20px;
+    background-position-y: 10px;
+    padding-top: 25%;
+    padding-bottom: 10px;
+    color:black;
+    font-size: 40px;
+    border-radius: 10px;
+}
+@keyframes s_e_1{
+    from{margin-left: -350px;}
+    to{margin-left:0px;}
+}
+@keyframes s_e_2{
+    from{margin-left: -450px;}
+    to{margin-left:0px;}
+}
+@keyframes s_e_3{
+    from{margin-left: -550px;}
+    to{margin-left:0px;}
+}
+@keyframes s_e_4{
+    from{margin-left: -650px;}
+    to{margin-left:0px;}
+}
+h1{
+    font-size: 60px;
+    -webkit-text-stroke: 2px black;
+    color: orange;
+ }
+h2{
+    font-size: 30px;
+}
+.background{
+    background-color: darkgray; 
+    background-image: url(Bild1.png); 
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    zoom: 250%;
+}
+
+.beschreibung{
+    position: absolute;
+    padding: 5%;
+    border: 5px solid black;
+    border-radius:20px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 0;
+    animation-name:b_open;
+    animation-duration: 1s;
+    overflow: hidden;
+}
+@keyframes b_open{
+    0%{right: 100%;
+        left: 0%;
+        top: 0%;
+        bottom: 100%;
+        opacity: 0%;}
+    100%{}
+}
+#b_textfeld{
+    position: absolute;
+    vertical-align: middle;
+    top: 35%;
+    height: 45%;
+    width: 320px;
+    padding-top: 0px;
+    overflow: hidden;
+}
+h4{
+    color: black;
+    font-size: 60px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    
+}
+h3{
+    font-size: 40px;
+    margin: 20px;
+}
+.b_button{
+    display:block;
+    text-align: center;
+    border: 2px solid black;
+    background-color: orange;
+    font-size: 60px;
+    border-radius: 30px;
+    margin:20px;
+    width: 70%;
+    position:absolute;
+    top: 82%;
+    left: 50%;
+    margin-left: -35%;
+    color:black;
+}
+#lockscreen{
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 0px;
+    background-color: darkgrey;
+    z-index: 1;
+}
+#checkmark{
+    height: 30%;
+    width: 40%;
+    background-image: url(checkmark.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    animation-name: check;
+    animation-duration: 2s;
+}
+@keyframes check{
+    from{top: -40%;}
+    to{top: 20%;}
+}
+#l_text{
+    color:rgb(0, 177, 0); 
+    position: absolute; 
+    top: 42%; 
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    animation-name: text;
+    animation-duration: 2s;
+}
+@keyframes text{
+    from{top: 120%;}
+    to{top: 42%;}
+}
+.l_button{
+    display:table-cell;
+    position: absolute;
+    height: 50px;
+    width: 200px;
+    top: 80%;
+    left: 50%;
+    margin-left: -100px;
+    text-align: center;
+    vertical-align: bottom;
+    border: 1.5px solid rgb(51, 49, 49);
+    background-color: rgb(255, 45, 45);
+    color:rgb(27, 26, 26);
+    font-size: 40px;
+    border-radius: 30px;
+    animation-name: r;
+    animation-duration: 8s;
+}
+@keyframes r{
+    0%,50%{opacity: 0;}
+    100%{opacity: 1;}
+}
