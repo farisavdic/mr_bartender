@@ -1,4 +1,27 @@
-{% for m in messages %}
-        <p>{{ m }}</p><br>
-{% endfor %}
-<a href="./../../interface/index/">Return to Home Page</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zurück zur Startseite</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% load static %}
+    {% load interface_extras %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../?api_key={{ api_key }}&cup_id={{ cup_id }}">
+            <img src="{% static "logo.png" %}" width="120" height="120" alt="">
+        </a>
+        <h1 class="mx-auto">Mr Bartender</h1>
+    </nav>
+    <div style="font-size: 24px;" class="container text-center">
+    {% for m in messages %}
+        <div class=" text-center alert alert-info" role="alert">
+            {{ m }}
+        </div>
+    {% endfor %}
+    <a class="text-center btn btn-primary" style="font-size: 24px;" href="./../../interface/index/">Zurück zur Startseite</a>
+    </div>
+</body>
+</html>

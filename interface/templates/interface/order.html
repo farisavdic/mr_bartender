@@ -1,19 +1,57 @@
-{% if drink_name %}
-    <h1>{{ drink_name }}</h1>
-    <form method="get" action="/api/">
-        {% csrf_token %}
-        <ul>
-            {% for ing in ingredients %}
-                {{ ing.name }}<input name="order[]" type="hidden" value="{{ ing.name }}"><input value="{{ ing.amount }}" name="order[]" type="number"> {{ ing.mother_instance.unit }}
-                <br>
-            {% endfor %}
-            <input type="hidden" value="{{ api_key }}" name="key">
-            <input type="hidden" value="{{ cup_id }}" name="cup_id">
-            <input type="hidden" value="3" name="action">
-        </ul>
-        <input type="submit" value="Verbindlich bestellen">
-    </form>
-{% else %}
-    <p>This drink is not available</p>
-    <a href="/interface/">Back to Homepage</a>
-{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ drink_name }}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% load static %}
+    {% load interface_extras %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="../?api_key={{ api_key }}&cup_id={{ cup_id }}">
+            <img src="{% static "logo.png" %}" width="120" height="120" alt="">
+        </a>
+        <h1 class="mx-auto">Mr Bartender</h1>
+    </nav>
+
+    <div class="container text-center" style="width: 90%;">
+        <a class="align-left mt-5" style="text-decoration: none; color: #1b1b1b; margin-top: 40px; font-size: 20px;" href="../?api_key={{ api_key }}&cup_id={{ cup_id }}">Zurück zur Startseite</a>
+    <div class="card my-5 py-5">
+    {% if drink_name %}
+        <div class="text-center">
+            <img src="{% static ico %}" alt="cocktail icon here" width="275" height="275">
+        </div>
+        <h1>{{ drink_name }}</h1>
+        <form method="get" action="/api/">
+            {% csrf_token %}
+            <div class="text-center">
+                <ul>
+                    {% for ing in ingredients %}
+                    <div class="row row-cols-2">
+                        <div class="col text-end">
+                                <label style="font-size: 24px;">{{ ing.name }}</label>
+                                <br>
+                        </div>
+                        <div style="font-size: 24px;" class="col text-start">
+                                <input name="order[]" type="hidden" value="{{ ing.name }}"><input style="width:60px; font-size: 24px;" value="{{ ing.amount }}" name="order[]" type="number"> {{ ing.mother_instance.unit }}
+                                <br>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <input type="hidden" value="{{ api_key }}" name="key">
+                    <input type="hidden" value="{{ cup_id }}" name="cup_id">
+                    <input type="hidden" value="3" name="action">
+                </ul>
+            </div>
+            <input class="btn btn-primary my-4" type="submit" value="Verbindlich bestellen" style="margin-bottom:20px;">
+            </div>
+        </form>
+    {% else %}
+        <p>This drink is not available</p>
+        <a href="/interface/">Back to Homepage</a>
+    {% endif %}
+    </div>
+</body>
+</html>

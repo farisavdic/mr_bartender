@@ -28,6 +28,7 @@ def order(request):
             "ingredients": d[0].ingredients.all(),
             "api_key": request.GET.get("api_key", default=""),
             "cup_id": request.GET.get("cup_id", default=""),
+            "ico": "icons/cocktail_" + request.GET.get("img_num", default="1") + ".png",
         }
     else:
         context = {

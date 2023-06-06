@@ -36,7 +36,7 @@ def index(request):
             else:
                 return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Error%20while%20deleting%20from%20database")
         else:
-            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=invalid%20cup%20id")
+            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Ungültiger%20Becher!")
 
     elif action == '3':
         cup_id = request.GET.get("cup_id", "")
@@ -53,12 +53,12 @@ def index(request):
                         order_string += str(o) + ":"
                         counter += 1
                 if place_order(cup_id, order_string):
-                    return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Successfully%20placed%20order%20for%20cup%20" + str(cup_id))
-                return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Error%20while%20placing%20order")
+                    return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Bestellung%20für%20Becher%20" + str(cup_id) + "%20erfolgreich%20aufgegeben!")
+                return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Fehler%20beim%20Aufgeben%20der%20Bestellung!")
             else:
-                return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=missing%20order")
+                return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Bestellung%20fehlt!")
         else:
-            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=invalid%20cup%20id")
+            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Ungültiger%20Becher!")
 
     elif action == '4':
         cup_id = request.GET.get("cup_id", "")
@@ -70,10 +70,12 @@ def index(request):
                 prep = True
             order = get_order(cup_id, encoded=enc, prepare_drink=prep)
             if order:
+                if enc:
+                    return HttpResponse(order)
                 return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=" + order + "%20was%20successfully%20prepared")
             return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=There%20is%20no%20order%20for%20cup%20" + str(cup_id))
         else:
-            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=invalid%20cup%20id")
+            return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=Ungültiger%20Becher!")
 
     elif action == '5':
         if is_master_key(api_key):

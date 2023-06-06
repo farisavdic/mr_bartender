@@ -1,13 +1,52 @@
-{% if not cup_id or not api_key%}
-    <p>invalid connection, please connect over QR code</p>
-{% else %}
-    {% if available_drinks %}
-        <ul>
-            {% for drink in available_drinks %}
-                <li><a href="/interface/order/?drink={{ drink }}&cup_id={{ cup_id }}&api_key={{ api_key }}">{{ drink }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No drinks are available</p>
-    {% endif %}
-{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% load static %}
+    {% load interface_extras %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+          <img src="{% static "logo.png" %}" width="120" height="120" alt="">
+      </a>
+      <h1 class="mx-auto">Mr Bartender</h1>
+    </nav>
+    <div class="container text-center">
+        {% if not cup_id or not api_key%}
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-danger" role="alert">
+                        Ungültige Verbindung! Bitte scannen Sie Ihren QR-Code
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row row-cols-1">
+                {% if available_drinks %}
+                        {% for drink in available_drinks %}
+                            <div class="col">
+                                <div class="card py-5 my-4" >
+                                    <div class="text-center">
+                                        {% with "icons/cocktail_"|addstr:forloop.counter|addstr:".png" as ico %}
+                                            <a href="/interface/order/?drink={{ drink }}&cup_id={{ cup_id }}&api_key={{ api_key }}&img_num={{ forloop.counter }}"><img src="{% static ico %}" alt="cocktail icon here" width="275" height="275"></a>
+                                        {% endwith %}
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title">{{ drink }}</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                {% else %}
+                    <p>No drinks are available</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
