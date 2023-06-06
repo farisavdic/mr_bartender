@@ -4,6 +4,7 @@ from decimal import Decimal
 import secrets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import qrcode
 # utility functions to be imported into other files
 
 
@@ -148,3 +149,12 @@ def get_available_drinks():
         if available:
             av_drinks.append(dr.name)
     return av_drinks
+
+def gen_qr_code(data):
+    qr = qrcode.QRCode(version=1,box_size=10,border=5)
+    qr.add_data(data)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill='black', back_color='white')
+    img.save('qrcode001.png')
+    return "qrcode001.png"

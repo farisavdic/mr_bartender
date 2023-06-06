@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from .utils import *
 
 
@@ -82,5 +82,13 @@ def index(request):
             key = gen_api_key()
             return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=API%20key%20is%20" + key)
         return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=You%20are%20not%20authorized%20to%20generate%20API%20keys")
+
+    elif action == '6':
+        cup_id = request.GET.get("cup_id", "")
+        file_name = gen_qr_code("http://mrbartender.cloud/?api_key=" + api_key + "&cup_id=" + str(cup_id))
+        img = open(file_name, "rb")
+        return FileResponse(img)
+
     else:
         return redirect("/interface/message/?api_key="+str(api_key)+"&cup_id="+str(cup_id)+"&message[]=invalid%20action%20code")
+
