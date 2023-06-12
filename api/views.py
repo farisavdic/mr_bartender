@@ -89,7 +89,7 @@ def index(request):
 
     elif action == '6':
         cup_id = request.GET.get("cup_id", "")
-        file_name = gen_qr_code("http://mrbartender.cloud/?api_key=" + api_key + "&cup_id=" + str(cup_id))
+        file_name = gen_qr_code("http://mrbartender.cloud/?api_key=" + gen_api_key() + "&cup_id=" + str(cup_id))
         img = open(file_name, "rb")
         return FileResponse(img)
 
