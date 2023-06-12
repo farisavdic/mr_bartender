@@ -4,7 +4,7 @@ from cocktails.models import Ingredient
 
 # Create your models here.
 class Cup(models.Model):
-    cup_id = models.IntegerField(default=-1)
+    cup_id = models.CharField(max_length=20)
     order = models.CharField(max_length=1000, blank=True, null=True)
     mixable = models.BooleanField(default=False)
 

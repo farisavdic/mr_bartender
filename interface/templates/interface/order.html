@@ -43,14 +43,15 @@
                     <input type="hidden" value="{{ api_key }}" name="key">
                     <input type="hidden" value="{{ cup_id }}" name="cup_id">
                     <input type="hidden" value="3" name="action">
+                    <input type="hidden" value="{{ drink_name }}" name="drink_name">
                 </ul>
             </div>
-            <input class="btn btn-primary my-4" type="submit" value="Verbindlich bestellen" style="margin-bottom:20px;">
+            <input class="btn btn-primary my-4" type="submit" value="Bestellen" style="margin-bottom:20px;">
             </div>
         </form>
     {% else %}
         <p>This drink is not available</p>
-        <a href="/interface/">Back to Homepage</a>
+        <a href="/interface/?api_key={{ api_key }}&cup_id={{ cup_id }}&drink_name={{ drink_name }}">Back to Homepage</a>
     {% endif %}
     </div>
 </body>

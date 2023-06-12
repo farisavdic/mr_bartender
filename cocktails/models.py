@@ -14,7 +14,7 @@ class Ingredient(models.Model):
 
 class IngredientForDrink(models.Model):
     name = models.CharField(max_length=40)
-    amount = models.DecimalField(decimal_places=1, max_digits=3, default=1.0)
+    amount = models.IntegerField()
     mother_instance = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -24,6 +24,7 @@ class IngredientForDrink(models.Model):
 class Drink(models.Model):
     name = models.CharField(max_length=40)
     ingredients = models.ManyToManyField(IngredientForDrink)
+
     def __str__(self):
         return self.name
 

@@ -5,6 +5,7 @@ import secrets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import qrcode
+from PIL import Image
 # utility functions to be imported into other files
 
 
@@ -68,10 +69,10 @@ def place_order(cup_id, order):
 def get_order(cup_id, encoded=False, prepare_drink=False):
     c = Cup.objects.get(cup_id=cup_id)
     order = c.order
-    c.order = ""
+    if encoded:
+        c.order = ""
     c.save()
     if prepare_drink:
-        pass
         edit_amounts(order)
     if encoded:
         return arduino_encode(order)
@@ -106,7 +107,7 @@ def arduino_encode(order):
             #print(d.dispenser_id)
             #print(d.ingredient)
             if d.ingredient.name == pair[0]:
-                str_list[int(d.dispenser_id)+1] = str(int(Decimal(pair[1]) * 10))
+                str_list[int(d.dispenser_id)+1] = str(int(pair[1]))
     for i in range(12):
         if not str_list[i]:
             str_list[i] = ""
@@ -150,11 +151,16 @@ def get_available_drinks():
             av_drinks.append(dr.name)
     return av_drinks
 
+
 def gen_qr_code(data):
-    qr = qrcode.QRCode(version=1,box_size=10,border=5)
+    qr = qrcode.QRCode(version=1, box_size=1, border=1)
     qr.add_data(data)
     qr.make(fit=True)
 
     img = qr.make_image(fill='black', back_color='white')
+    img.save('qrcode001.png')
+
+    image = Image.open('qrcode001.png')
+    img = image.resize((32, 32))
     img.save('qrcode001.png')
     return "qrcode001.png"
